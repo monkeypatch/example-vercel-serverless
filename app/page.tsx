@@ -49,7 +49,8 @@ export default function Home() {
             </h1>
             <div className={'flex gap-3'}>
 
-                <textarea type={'text'} placeholder={'Type your statement here...'}
+                <textarea
+                    placeholder={'Type your statement here...'}
                        className={'p-2 rounded-xl w-full max-w-120'}
                        value={statement}
                        onChange={(e) => setStatement(e.target.value)}
