@@ -13,12 +13,6 @@ import os
 from typing import Literal
 from pydantic import Field, BaseModel
 
-# environment variables
-# from dotenv import load_dotenv
-# load_dotenv()
-
-
-
 # serverless
 from http.server import BaseHTTPRequestHandler
 
