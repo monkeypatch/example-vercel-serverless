@@ -18,23 +18,23 @@ export default function Home() {
         setEvaluation(null)
         setError(null)
         const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
+        console.log(apiUrl)
         // Make the request
         axios.get<null, Number>(`${apiUrl}?statement=${statement}`)
             .then(response => {
-                if (Number.isNaN(response)) {
-                    setError("An error occurred. Check the URL and verify it's a valid Yelp URL and try again.")
-                } else {
-                    if ((response as any).data) {
+                console.log(response)
+                 if ((response as any).data) {
                         setEvaluation({
                             isTrue: (response as any).data.is_true,
                             confidence: (response as any).data.confidence,
                             explanation: (response as any).data.explanation,
                         })
-                    }
-                }
+                    } else {
+                        setError("An error occurred")
+                 }
             })
             .catch(error => {
+                console.log(error)
                 setError("An error occurred. Check the URL and verify it's a valid Yelp URL and try again.")
             }).finally(() => {
             setIsFetching(false)
@@ -64,23 +64,34 @@ export default function Home() {
                 </button>
 
             </div>
-            <div>
+            <div className={"max-w-[800px] m-auto mt-8"}>
                 {isFetching ? "I'm thinking..." : null}
                 {error ? <div className={'text-red-500'}>{error}</div> : null}
-                {evaluation ? <div className={'flex flex-col gap-2'}>
-                    <div className={'flex flex-row gap-2'}>
-                        <div className={'w-24'}>Is it true?</div>
+                {evaluation ? (
+                    <div className={'flex flex-col gap-2'}>
                         <div className={'flex flex-row gap-2'}>
-                            <div className={'w-24'}>{evaluation.isTrue}</div>
-                            <div className={'flex flex-col'}>
-                                <div className={'w-24 h-2 bg-gray-200 rounded-full'}>
-                                    <div className={'h-2 bg-green-500 rounded-full'}
-                                         style={{width: `${evaluation.isTrue === 'yes' ? 100 : evaluation.isTrue === 'maybe' ? 50 : 0}%`}}/>
+                            <div className={'w-24'}>Is it true?</div>
+                            <div className={'flex flex-row gap-2 items-center'}>
+                                <div className={'w-24'}>{evaluation.isTrue}</div>
+                                <div className={'flex flex-col'}>
+                                    <div className={'w-24 h-2 bg-gray-400 rounded-full'}>
+                                        <div className={'h-2 bg-green-500 rounded-full'}
+                                             style={{width: `${evaluation.confidence === 'high' ? '100' : evaluation.confidence === 'medium' ? '50' : '5'}%`}}/>
+                                    </div>
+                                </div>
+                                <div>
+                                    {evaluation.confidence === 'high' ? 'Very confident' : evaluation.confidence === 'medium' ? 'Somewhat confident' : 'Not confident'}
                                 </div>
                             </div>
+
                         </div>
+                         <div>
+                                Here's why: <br />
+                                {evaluation.explanation}
+
+                            </div>
                     </div>
-                </div> : null}
+                ): null}
             </div>
         </main>
     )

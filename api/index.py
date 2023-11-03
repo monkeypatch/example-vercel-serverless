@@ -1,3 +1,4 @@
+import json
 import os
 
 # import subprocess
@@ -76,6 +77,12 @@ def test_truth_evaluator():
     )
 
 
+def get_url_params(url):
+    params = {}
+    if '?' in url:
+        params = (url.split('?')[1]).split('&')
+        params = {param.split('=')[0]: param.split('=')[1] for param in params}
+    return params
 
 
 
@@ -88,7 +95,22 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.end_headers()
 
-        statement = self.path[1:]
+        #key value pair of the query params
+        params = get_url_params(self.path)
+        if(not 'statement' in params):
+            payload = {
+                'error': 'No statement provided',
+                'status': 400,
+            }
+            self.wfile.write(json.dumps(payload).encode())
+            return
+
+
+
+
+        statement = params['statement']
+
         response = truth_evaluator(statement)
+
         self.wfile.write(response.model_dump_json().encode())
         return
