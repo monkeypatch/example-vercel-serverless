@@ -1,13 +1,13 @@
 import os
-import subprocess
-import sys
 
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-install('pydantic')
-install('openai')
-install('monkey-patch.py')
+# import subprocess
+# import sys
+# def install(package):
+#     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+#
+# install('pydantic')
+# install('openai')
+# install('monkey-patch.py')
 
 # pydantic and typing
 from typing import Literal
@@ -27,7 +27,7 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY") # Your OpenAI API key
 
 # ********** Monkey Patching **********
-import monkey_patch as Monkey
+from monkey_patch.monkey import Monkey
 
 
 # Define the response type
