@@ -1,12 +1,23 @@
 import os
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install('pydantic')
+install('openai')
+install('monkey-patch.py')
 
 # pydantic and typing
 from typing import Literal
 from pydantic import Field, BaseModel
 
 # environment variables
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
+
+
 
 # serverless
 from http.server import BaseHTTPRequestHandler
