@@ -46,7 +46,8 @@ cp .env.demo .env.local
 7. Create / update `./package.json` (see example in repo) so that all dependencies are installed when the app is deployed'
 8. Run `npm install` to install all dependencies
 9. A `globals.css` is automatically created when you run `npx create-next-app@latest`. For the purposes of this demo change the word `dark` in the file to `light` so that the background is white instead of black (vercel's default).
-10. Deploy the app to Vercel or run it locally. 
+10. Deploy the app to Vercel or run it locally.
+
 *NOTE*: If you are deploying it to Vercel, you'd have to set your environment variables (from .env.local) in the Vercel dashboard (`settings->Environment Variables`
 ). If you are running it locally, you can skip this step.
 ```bash
@@ -56,7 +57,7 @@ vercel dev
 # Deploy to Vercel
 vercel deploy
 ```
-8. (Optional) If you want vercel to automatically deploy your app on every push to GitHub, you can link your GitHub account to Vercel and then run:
+11. (Optional) If you want vercel to automatically deploy your app on every push to GitHub, you can link your GitHub account to Vercel and then run:
     * Go on Vercel and create a new project
     * Select the repo you want to link
     * Select the branch you want to deploy

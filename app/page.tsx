@@ -17,11 +17,9 @@ export default function Home() {
         setEvaluation(null)
         setError(null)
         const apiUrl = '/api'
-        console.log(apiUrl)
         // Make the request
         axios.get<null, Number>(`${apiUrl}?statement=${statement}`)
             .then(response => {
-                console.log(response)
                  if ((response as any).data) {
                         setEvaluation({
                             isTrue: (response as any).data.is_true,
