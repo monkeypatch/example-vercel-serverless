@@ -33,8 +33,7 @@ export default function Home() {
                  }
             })
             .catch(error => {
-                console.log(error)
-                setError("An error occurred. Check the URL and verify it's a valid Yelp URL and try again.")
+                setError("An error occurred. ")
             }).finally(() => {
             setIsFetching(false)
         });
