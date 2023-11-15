@@ -43,6 +43,9 @@ cp .env.demo .env.local
 ```
 5. Create / update the requirements.txt file and place it in the root of your project (see example in repo)
 6. Create / update `./app/api/index.py` that will serve our serverless function (see example in repo)
+7. Create / update `./package.json` (see example in repo) so that all dependencies are installed when the app is deployed'
+8. Run `npm install` to install all dependencies
+9. A `globals.css` is automatically created when you run `npx create-next-app@latest`. For the purposes of this demo change the word `dark` in the file to `light` so that the background is white instead of black (vercel's default).
 7. Deploy the app to Vercel or run it locally
 ```bash
 # Run locally
