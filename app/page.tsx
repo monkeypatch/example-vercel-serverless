@@ -16,7 +16,7 @@ export default function Home() {
         setIsFetching(true)
         setEvaluation(null)
         setError(null)
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
+        const apiUrl = '/api'
         console.log(apiUrl)
         // Make the request
         axios.get<null, Number>(`${apiUrl}?statement=${statement}`)
