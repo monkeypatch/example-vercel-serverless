@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import {useState} from "react";
 import axios from 'axios';
 
@@ -35,7 +34,7 @@ export default function Home() {
             })
             .catch(error => {
                 console.log(error)
-                setError("An error occurred. Check the URL and verify it's a valid Yelp URL and try again.")
+                setError("An error occurred. Check the URL and verify it&apos;s a valid Yelp URL and try again.")
             }).finally(() => {
             setIsFetching(false)
         });
@@ -65,7 +64,7 @@ export default function Home() {
 
             </div>
             <div className={"max-w-[800px] m-auto mt-8"}>
-                {isFetching ? "I'm thinking..." : null}
+                {isFetching ? "I&apos;m thinking..." : null}
                 {error ? <div className={'text-red-500'}>{error}</div> : null}
                 {evaluation ? (
                     <div className={'flex flex-col gap-2'}>
@@ -86,7 +85,7 @@ export default function Home() {
 
                         </div>
                          <div>
-                                Here's why: <br />
+                                Here&apos;s why: <br />
                                 {evaluation.explanation}
 
                             </div>
